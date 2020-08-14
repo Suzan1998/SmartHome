@@ -174,7 +174,7 @@ const Main = ({navigation, route}) =>{
                     </View>
                 </Card>
                 <Card style={styles.mycard}
-                onPress={()=>navigation.navigate("Profile")}
+                onPress={()=>navigation.navigate("Doors")}
                 >
                     <View style={styles.cardview}>
                         <View style={styles.textview}>
@@ -190,7 +190,7 @@ const Main = ({navigation, route}) =>{
                 </Card>
                    
                 <Card style={styles.mycard}
-                onPress={()=>navigation.navigate("Profile")}
+                onPress={()=>navigation.navigate("FireAlarm")}
                 >
                     <View style={styles.cardview}>
                         <View style={styles.textview}>
@@ -206,7 +206,7 @@ const Main = ({navigation, route}) =>{
                 </Card>
                    
                 <Card style={styles.mycard}
-                onPress={()=>navigation.navigate("Profile")}
+                onPress={()=>navigation.navigate("Irrigation")}
                 >
                     <View style={styles.cardview}>
                         <View style={styles.textview}>
