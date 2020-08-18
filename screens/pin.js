@@ -16,7 +16,7 @@ import * as firebase from 'firebase';
 // _handleUserPreference = () =>
 //     this.setState({ ...this.state, status: !this.state.status, update_user_preferences: false  });
 
-export default class App extends React.Component {
+export default class Pin extends React.Component {
   
   state = {
   status: '',

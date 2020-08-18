@@ -8,6 +8,7 @@ import Doors from './screens/Doors';
 import Profile from './screens/Profile.js';
 import PassDoor from './screens/passDoor.js'
 import Carage from './screens/carageDoor.js';
+import Pin from './screens/pin.js';
 import FireAlarm from './screens/FireAlarm.js';
 import Irrigation from './screens/Irrigation.js';
 import { NavigationContainer } from '@react-navigation/native';
@@ -41,7 +42,7 @@ const baroptions={
           <Stack.Screen name="MainScreen" component={Main} 
            options={{...baroptions, title:"Main Window"}}
           />
-          <Stack.Screen name="Lights" component={Lights} 
+          <Stack.Screen name="Lights" component={Pin} 
            options={{...baroptions, title:"Home Lightning"}}
           />
           <Stack.Screen name="Doors" component={Doors} 
