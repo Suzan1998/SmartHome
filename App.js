@@ -8,6 +8,7 @@ import Doors from './screens/Doors';
 import Profile from './screens/Profile.js';
 import PassDoor from './screens/passDoor.js'
 import Carage from './screens/carageDoor.js';
+import GaraegDoor from './screens/Garage.js';
 import Pin from './screens/pin.js';
 import FireAlarm from './screens/FireAlarm.js';
 import Irrigation from './screens/Irrigation.js';
@@ -48,7 +49,7 @@ const baroptions={
           <Stack.Screen name="Doors" component={Doors} 
            options={{...baroptions, title:"Home Doors"}}
           />
-          <Stack.Screen name="Carage" component={Carage} 
+          <Stack.Screen name="Carage" component={GaraegDoor} 
            options={{...baroptions, title:"Carage Door"}}
           />
           <Stack.Screen name="PassDoor" component={PassDoor} 

@@ -244,20 +244,7 @@ changevaluetoONled2() {
      console.log("DGDFG",this.state.status)
         return (
           <View>
-          <View style={{
-            marginTop:10,
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-            borderRadius: 23,
-            borderColor: '#00b5ec',
-            borderWidth: 2,
-            backgroundColor: this.props.backgroundColor,
-            height: 120,
-            width: 335,
-            paddingLeft: 18,
-            alignItems: 'center',
-            marginLeft: 10
-          }}>
+          <View style={styles.common}>
              <Text>led1 is {this.state.status}</Text>
              <TouchableHighlight onPress={this.changevaluetoON} >
                 <Image style={{
@@ -280,20 +267,7 @@ changevaluetoONled2() {
          </TouchableHighlight>
            
           </View>
-          <View style={{
-            marginTop:10,
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-            borderRadius: 23,
-            borderColor: '#00b5ec',
-            borderWidth: 2,
-            backgroundColor: this.props.backgroundColor,
-            height: 120,
-            width: 335,
-            paddingLeft: 18,
-            alignItems: 'center',
-            marginLeft: 10
-          }}>
+          <View style={styles.common}>
              <Text>led2 is {this.state.status2}</Text>
              <TouchableHighlight onPress={this.changevaluetoONled2} >
                 <Image style={{
@@ -317,20 +291,7 @@ changevaluetoONled2() {
            
           </View>
 
-          <View style={{
-            marginTop:10,
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-            borderRadius: 23,
-            borderColor: '#00b5ec',
-            borderWidth: 2,
-            backgroundColor: this.props.backgroundColor,
-            height: 120,
-            width: 335,
-            paddingLeft: 18,
-            alignItems: 'center',
-            marginLeft: 10
-          }}>
+          <View style={styles.common}>
              <Text>dooor is {this.state.doorstatus}</Text>
              <TouchableHighlight onPress={this.changevaluetoONdoor} >
                 <Image style={{
@@ -361,3 +322,41 @@ changevaluetoONled2() {
         );
     }
 }
+const styles = StyleSheet.create({
+  common:
+  {
+    alignSelf:'center',
+    marginTop:10,
+    flexDirection: 'row',
+    borderRadius: 23,
+    borderColor: '#00b5ec',
+    borderWidth: 2,
+    backgroundColor: "white",
+    height: 150,
+    width: 345,
+    alignItems: 'center',
+    
+  },
+  buttonImage:
+  {
+    backgroundColor: "white",
+    height:70,
+    width: 70,
+    margin:10
+  },
+  textStyle:
+  {
+   
+  },
+  imageStyle:{
+    backgroundColor: "white",
+    height:147,
+    width: 150,
+    borderRadius:23,
+    
+  }
+
+
+
+  
+})

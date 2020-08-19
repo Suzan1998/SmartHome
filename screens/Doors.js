@@ -2,11 +2,10 @@ import React, {useState,useEffect} from 'react';
 import { StyleSheet, Text, View,Image ,FlatList, Alert, KeyboardAvoidingView,
     ScrollView , } from 'react-native';
 import { Card, FAB, Button } from 'react-native-paper';
+
 //import { item } from 'react-native-paper';
 
 const Doors = ({navigation}, route)=>{
-    const [data,setData] = useState([])
-    const [loading,setLoading] = useState(true)
 
 
     return(
