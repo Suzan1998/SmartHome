@@ -4,9 +4,8 @@ import { StyleSheet, Text, View,Image ,FlatList, Alert, KeyboardAvoidingView,
 import { Card, FAB, Button } from 'react-native-paper';
 //import { item } from 'react-native-paper';
 
-const Home = ({navigation}, route)=>{
-    const [data,setData] = useState([])
-    const [loading,setLoading] = useState(true)
+const Home = ({navigation})=>{
+
 
 
     return(
@@ -36,13 +35,6 @@ const Home = ({navigation}, route)=>{
     </KeyboardAvoidingView>
     </ScrollView>
   </View>
-           
-            <FAB onPress={()=>navigation.navigate("CreateEmp")}
-              style={styles.fab}
-              large
-              icon="plus"
-              theme={{colors:{accent:'#272429'}}}
-            />
         </View>
     )
 }
@@ -80,13 +72,6 @@ const styles = StyleSheet.create({
     text:{
        fontSize:18,
     },
-    fab:{
-        position: 'absolute',
-        margin: 16,
-        right: 265,
-        bottom: 20,
-
-    },
     logo: {
         
         height: 180,
@@ -94,11 +79,9 @@ const styles = StyleSheet.create({
       },
       name: {
         height: 150,
-        width: 330,
+        width: 300,
       },
-    inputfont: {
 
-    },
     inputstyle:{
         padding:10,  
     },

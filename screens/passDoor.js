@@ -12,24 +12,20 @@ const PassDoor = ({navigation}, route)=>{
     return(
         <KeyboardAvoidingView behavior="position"  style={styles.root}>
         <View>
-        <Card style={styles.mycard}
-            
-            >
-                <View style={styles.cardview}>
+        <Card style={styles.mycard} >
+                
                 <Image 
                  style={styles.cardImage}
-                source={require('./assets/door.jpg')}
+                source={require('./assets/pass.jpg')}
                 />
-             <Text style={styles.text}>Enter Door Password</Text>
-                </View>
-          
-           
+ 
             </Card>
-            <PinView
+             <PinView
             onComplete={(val, clear)=>{alert(val)}}
             pinLength={5}
             />
             </View>
+           
             </KeyboardAvoidingView>
             )
     
@@ -41,10 +37,7 @@ const theme ={
 
 }
 const styles = StyleSheet.create({
-
-
     mycard:{
-        margin:5,
        padding:1,
        backgroundColor:"white",
        justifyContent:'center',
@@ -61,9 +54,9 @@ const styles = StyleSheet.create({
 
      },
       cardImage: {
-        alignSelf:'auto',
-        width:150,
-        height:150,
+       
+        width:400,
+        height:140,
        
        
       },

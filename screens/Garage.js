@@ -23,14 +23,12 @@ import * as firebase from 'firebase';
 
 export default class GaraegDoor extends React.Component {
     
-  constructor(){
-
-    super();
-
-    this.state={
-
+  
+    
+    state={
+      doorstatus:'',
       imageURL : 'https://cdn1.vectorstock.com/i/thumb-large/12/30/garage-isometric-icon-isolated-on-color-vector-20151230.jpg'
-    }
+    
 
   }
   Load_Open_Image=()=>{
@@ -51,30 +49,30 @@ export default class GaraegDoor extends React.Component {
   }
   
     
-  state = {
 
-  Garagedoorstatus:'',
-
-};
 
 readvalueofdoor() {
+  let id="0"
+  let id2="1"
  let status
- 
+ let status2
  try
   {
-     firebase.database().ref().child('door').on("value", function (snapshot) {
+     firebase.database().ref().child('door1').on("value", function (snapshot) {
          snapshot.forEach(function (item) {
              status=item.val()
+            // console.log("status") 
+             //console.log(status)  
+          //  console.log("sdlfjsdhfh",status)
           if(status == 1)
           {
-        
        this.setState({
-        Garagedoorstatus: "opened"
+        doorstatus: "Open"
        })
      }
      else {
        this.setState({
-         Garagedoorstatus: "closed"
+         doorstatus: "Closed"
         })
      }
 
@@ -90,12 +88,13 @@ readvalueofdoor() {
 
 changevaluetoOFFdoor() {
   let id="0";
+  //let id2="1";
+  let status
   try
      {
      firebase.database().ref('door1/').set(
       {status:id})
       this.setState({status: id})
-     
     }
   catch(error){
     console.log(error)
@@ -104,8 +103,8 @@ changevaluetoOFFdoor() {
 
 changevaluetoONdoor() {
   let id="1";
-
-
+  //let id2="1";
+  let status
   try
      {
      firebase.database().ref('door1/').set(
@@ -124,16 +123,16 @@ changevaluetoONdoor() {
       console.log(this.state.status)
       try
       {
-      const firebaseConfig = {
-        apiKey: "AIzaSyDrxKgonBdLFWIeNSXDvFfPPynQXP6AiJo",
-        authDomain: "ardu-a361a.firebaseapp.com",
-        databaseURL: "https://ardu-a361a.firebaseio.com",
-        projectId: "ardu-a361a",
-        storageBucket: "ardu-a361a.appspot.com",
-        messagingSenderId: "1096024222021",
-        appId: "1:1096024222021:web:ad47c9d5e28eee46bc762c",
-        measurementId: "G-B4C2GHM5BC"
-      };
+        const firebaseConfig = {
+          apiKey: "AIzaSyDrxKgonBdLFWIeNSXDvFfPPynQXP6AiJo",
+          authDomain: "ardu-a361a.firebaseapp.com",
+          databaseURL: "https://ardu-a361a.firebaseio.com",
+          projectId: "ardu-a361a",
+          storageBucket: "ardu-a361a.appspot.com",
+          messagingSenderId: "1096024222021",
+          appId: "1:1096024222021:web:ad47c9d5e28eee46bc762c",
+          measurementId: "G-B4C2GHM5BC"
+        };
         //if (!firebase.app.length) {
         firebase.initializeApp(firebaseConfig);
         //console.log(firebaseConfig)
@@ -152,34 +151,32 @@ changevaluetoONdoor() {
   
 
     render() {
-        
-        let GarageImg =<Image 
-        style={{width:350, height:370,alignSelf:'center', marginTop:20}}
-        source = {{ uri: this.state.imageURL }}
-       
-       />
-
-       
+  
      console.log("DGDFG",this.state.status)
         return (
            
             <View style={styles.viewStyle}>
-                    
+              <Card style={styles.garagecard}>
+           <Text style={styles.text}>Your Garage Door is {this.state.doorstatus}</Text>
+           </Card>      
             <Card style={styles.mycard}>
             
                     <View style={styles.cardview}>
                         <View style={styles.textview}>
-                            <Text style={styles.text}>Control Your Garage:</Text>
-                            { GarageImg }
+                            <Image 
+        style={styles.imageStyle}
+        source={require('./assets/garage2.png')}
+       
+       />
                         </View>
                     </View>
                     
                 </Card>
                
                         <View style={styles.modalButtonView}>
-                        <TouchableHighlight onPress={this.changevaluetoONdoor, this.Load_Open_Image}>
+                        <TouchableHighlight onPress={this.changevaluetoONdoor}>
                 <Image style={{
-                    backgroundColor: this.props.backgroundColor,
+                    
                     height:80,
                     width: 80,
                   }}
@@ -188,9 +185,9 @@ changevaluetoONdoor() {
       </TouchableHighlight>
          
         
-          <TouchableHighlight onPress={this.changevaluetoOFFdoor, this.Load_Close_Image} >
+          <TouchableHighlight onPress={this.changevaluetoOFFdoor} >
              <Image style={{
-                    backgroundColor: this.props.backgroundColor,
+                    
                     height: 80,
                     width:80,
                   }}
@@ -207,48 +204,55 @@ changevaluetoONdoor() {
 
 
 const styles = StyleSheet.create({
-  common:
-  {
-    alignSelf:'center',
-    marginTop:10,
-    flexDirection: 'row',
-    borderRadius: 23,
-    borderColor: '#00b5ec',
-    borderWidth: 2,
-    backgroundColor: "white",
-    height: 150,
-    width: 345,
-    alignItems: 'center',
-    
-  },
+ 
   modalButtonView:{
     flexDirection:'row',
-    marginTop:20,
-    justifyContent:'space-around'
+    margin:5,
+    width: 360,
+    height:100,
+    justifyContent:'space-around',
+    borderWidth:2,
+    borderColor:'#197fff'
 
     
    },
-  
-  buttonImage:
-  {
-    backgroundColor: "white",
-    height:70,
-    width: 70,
-    margin:10
-  },
-  textStyle:
-  {
+
+  garagecard:{
+    margin:5,
+   height:50,
+   borderWidth:2,
+   borderColor:'#ffffff',
+   flexDirection:"row",
+   backgroundColor:'#197fff',
+   justifyContent:'center',
+   alignItems:'center',
    
-  },
-  imageStyle:{
-    backgroundColor: "white",
-    height:147,
-    width: 150,
-    borderRadius:23,
     
-  }
+  },
+  text:{
+    fontSize:15,
+    alignSelf:'center',
+    color:'#ffffff'
+   },
 
 
+   mycard:{
+    height:400,
+    width: 360,
+    margin:5,
+    borderWidth:2,
+   borderColor:'#197fff',
+   backgroundColor:"#ffffff",
+   alignItems:'center',
+   justifyContent:'center',
+  },
+  
+  imageStyle:{
+  
+    height:350,
+    width: 350,
+    alignSelf:'center',
+  },
 
   
 })

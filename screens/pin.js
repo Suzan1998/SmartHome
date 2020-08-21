@@ -9,12 +9,8 @@ import {
   CheckBox,
   Switch, KeyboardAvoidingView,
 } from 'react-native'
+import { Card, FAB, Button } from 'react-native-paper';
 import * as firebase from 'firebase';
-
-
-
-// _handleUserPreference = () =>
-//     this.setState({ ...this.state, status: !this.state.status, update_user_preferences: false  });
 
 export default class Pin extends React.Component {
   
@@ -102,12 +98,12 @@ readvalueofdoor() {
           if(status == 1)
           {
        this.setState({
-        doorstatus: "opened"
+        doorstatus: "ON"
        })
      }
      else {
        this.setState({
-         doorstatus: "closed"
+         doorstatus: "OFF"
         })
      }
 
@@ -243,118 +239,156 @@ changevaluetoONled2() {
     render() {
      console.log("DGDFG",this.state.status)
         return (
-          <View>
-          <View style={styles.common}>
-             <Text>led1 is {this.state.status}</Text>
+         <View style={{flex:1}}>
+         <ScrollView style={styles.scrollView}>
+           <Card style={styles.roomcard}>
+           <Text style={styles.text}>Living Room Light is {this.state.status}</Text>
+           </Card>
+           <Card style={styles.mycard}>
+           <View style={styles.cardview}>
+           <View style={styles.textview}>
+        
+           <Image style={styles.imageStyle}
+                        source={require('./assets/living.png')}/>
+           </View>
              <TouchableHighlight onPress={this.changevaluetoON} >
-                <Image style={{
-                    backgroundColor: this.props.backgroundColor,
-                    height:80,
-                    width: 80,
-                  }}
+                <Image style={styles.image1Style}
                         source={require('./assets/on2.png')}/>
           
       </TouchableHighlight>
-         
-        
+  
           <TouchableHighlight onPress={this.changevaluetoOFF} >
-             <Image style={{
-                    backgroundColor: this.props.backgroundColor,
-                    height: 80,
-                    width:80,
-                  }}
+          <Image style={styles.image2Style}
                     source={require('./assets/off2.png')}/>  
          </TouchableHighlight>
-           
-          </View>
-          <View style={styles.common}>
-             <Text>led2 is {this.state.status2}</Text>
+         
+         </View>
+           </Card>
+           <Card style={styles.roomcard}>
+           <Text style={styles.text}>Kitchen Light is {this.state.status2}</Text>
+           </Card>
+           <Card style={styles.mycard}>
+           <View style={styles.cardview}>
+           <View style={styles.textview}>
+             
+             <Image style={styles.imageStyle}
+                        source={require('./assets/kitchen.png')}/>
+             </View>
              <TouchableHighlight onPress={this.changevaluetoONled2} >
-                <Image style={{
-                    backgroundColor: this.props.backgroundColor,
-                    height:80,
-                    width: 80,
-                  }}
+             <Image style={styles.image1Style}
                         source={require('./assets/on2.png')}/>
-          
       </TouchableHighlight>
          
         
           <TouchableHighlight onPress={this.changevaluetoOFFled2} >
-             <Image style={{
-                    backgroundColor: this.props.backgroundColor,
-                    height: 80,
-                    width:80,
-                  }}
+          <Image style={styles.image2Style}
                     source={require('./assets/off2.png')}/>  
          </TouchableHighlight>
-           
-          </View>
-
-          <View style={styles.common}>
-             <Text>dooor is {this.state.doorstatus}</Text>
+         </View>
+          </Card>
+          <Card style={styles.roomcard}>
+           <Text style={styles.text}>OutDoor Light is {this.state.doorstatus}</Text>
+           </Card>
+          <Card style={styles.mycard}>
+          <View style={styles.cardview}>
+          <View style={styles.textview}>
+          <Image style={styles.imageStyle}
+                        source={require('./assets/outdoor.png')}/>
+             
+             </View>
              <TouchableHighlight onPress={this.changevaluetoONdoor} >
-                <Image style={{
-                    backgroundColor: this.props.backgroundColor,
-                    height:80,
-                    width: 80,
-                  }}
+             <Image style={styles.image1Style}
                         source={require('./assets/on2.png')}/>
           
       </TouchableHighlight>
          
         
           <TouchableHighlight onPress={this.changevaluetoOFFdoor} >
-             <Image style={{
-                    backgroundColor: this.props.backgroundColor,
-                    height: 80,
-                    width:80,
-                  }}
+          <Image style={styles.image2Style}
                     source={require('./assets/off2.png')}/>  
          </TouchableHighlight>
-           
-          </View>
-
-
-
-          </View>
+         </View>
+         </Card>
+         
+          </ScrollView>
+          <View>
+          <FAB onPress={()=>navigation.navigate("CreateEmp")}
+        style={styles.fab}
+        large
+        icon="plus"
+        theme={{colors:{accent:'#272429'}}}
+       />
+        </View>
+        </View>
+          
      
         );
     }
 }
 const styles = StyleSheet.create({
-  common:
-  {
-    alignSelf:'center',
-    marginTop:10,
-    flexDirection: 'row',
-    borderRadius: 23,
-    borderColor: '#00b5ec',
-    borderWidth: 2,
-    backgroundColor: "white",
-    height: 150,
-    width: 345,
-    alignItems: 'center',
+  fab:{
+    position: 'absolute',
+    margin: 16,
+    right: 265,
+    bottom: 20,
+
+},
+textview:{
+  flexDirection:'column',
+  marginTop:2,
+  marginRight:15
+  ,
+},
+text:{
+ fontSize:15,
+ alignSelf:'center',
+ color:'#ffffff'
+},
+
+  image1Style:{
+    alignSelf:'flex-end',
+    height:80,
+    width: 80,
+    marginTop:30,
     
   },
-  buttonImage:
-  {
-    backgroundColor: "white",
-    height:70,
-    width: 70,
-    margin:10
-  },
-  textStyle:
-  {
-   
+  image2Style:{
+    alignSelf:'flex-end',
+    height:80,
+    width: 80,
+    marginTop:30,
+    
   },
   imageStyle:{
-    backgroundColor: "white",
-    height:147,
-    width: 150,
-    borderRadius:23,
+    alignSelf:'flex-end',
+    height:130,
+    width: 170,
     
-  }
+  },
+  mycard:{
+    margin:5,
+   // padding:5,
+   backgroundColor:'#ffffff',
+   justifyContent:'flex-end',
+   alignItems:'flex-end',
+    
+  },
+  roomcard:{
+    margin:5,
+   height:50,
+   borderWidth:2,
+   borderColor:'#ffffff',
+   flexDirection:"row",
+   backgroundColor:'#197fff',
+   justifyContent:'center',
+   alignItems:'center',
+   
+    
+  },
+  cardview:{
+    flexDirection:"row",
+    padding:6,
+},
 
 
 

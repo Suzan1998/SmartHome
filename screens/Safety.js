@@ -5,7 +5,7 @@ import { Card, FAB, Button } from 'react-native-paper';
 
 //import { item } from 'react-native-paper';
 
-const Doors = ({navigation}, route)=>{
+const Safety = ({navigation}, route)=>{
 
 
     return(
@@ -41,6 +41,22 @@ const Doors = ({navigation}, route)=>{
                 />
                 </View>
             </Card>
+                               
+            <Card style={styles.mycard}
+                onPress={()=>navigation.navigate("FireAlarm")}
+                >
+                    <View style={styles.cardview}>
+                        <View style={styles.textview}>
+                            <Text style={styles.text}>Fire Detector</Text>
+                        
+                        </View>
+                    <Image 
+                     style={styles.cardImage}
+                    source={require('./assets/fire.png')}
+                    
+                    />
+                    </View>
+                </Card>
             </View>
             </KeyboardAvoidingView>
             )
@@ -124,4 +140,4 @@ const styles = StyleSheet.create({
         padding:10,  
     },
   });
-export default Doors;
+export default Safety;

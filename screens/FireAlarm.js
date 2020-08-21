@@ -17,16 +17,45 @@ const FireAlarm = ({navigation}, route)=>{
             >
                 <View style={styles.cardview}>
                     <View style={styles.textview}>
-                        <Text style={styles.text}>Fire Status</Text>
-                    
+                        <Text style={styles.text}>Fire Status</Text>   
                     </View>
-                <Image 
+                    <Image 
                  style={styles.cardImage}
-                source={require('./assets/door.png')}
+                source={require('./assets/house.png')}
                 
                 />
                 </View>
             </Card>
+        <Card style={styles.mycard}
+            onPress={()=>navigation.navigate("PassDoor")}
+            >
+                <View style={styles.cardview}>
+                    <View style={styles.textview}>
+                        <Text style={styles.text}>Call Emergency </Text>   
+                    </View>
+                    <Image 
+                 style={styles.cardImage}
+                source={require('./assets/fireman.png')}
+                
+                />
+                </View>
+            </Card>
+            <Card style={styles.StateCard}
+            onPress={()=>navigation.navigate("PassDoor")}
+            >
+                <View style={styles.cardview}>
+                    <View style={styles.textview}>
+                    </View>
+                    <Image 
+                 style={{width:80,height:80}}
+                source={require('./assets/ok.png')}
+                
+                />
+                </View>
+            </Card>
+            
+            
+               
             </View>
             </KeyboardAvoidingView>
             )
@@ -40,25 +69,12 @@ const theme ={
 }
 const styles = StyleSheet.create({
 
-    cardview:{
-        flexDirection:"row",
-        
-    },
     textview:{
         flexDirection:'column',
         
     },
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center', 
-        justifyContent: 'center',
-        margin: 1
-        ,
-      },
-    text:{
-       fontSize:18,
-    },
+
+
     fab:{
         position: 'absolute',
         margin: 16,
@@ -67,6 +83,16 @@ const styles = StyleSheet.create({
 
     },
     mycard:{
+        margin:5,
+       // padding:5,
+       backgroundColor:"white",
+       justifyContent:'flex-end',
+       alignItems:'flex-end',
+       borderBottomWidth:1,
+        borderBottomColor: '#197fff'
+        
+      },
+    StateCard:{
         margin:5,
        // padding:5,
        backgroundColor:"white",
@@ -94,20 +120,6 @@ const styles = StyleSheet.create({
         padding:6,
         
     },
-    logo: {
-        
-        height: 180,
-        width: 180,
-      },
-      name: {
-        height: 150,
-        width: 330,
-      },
-    inputfont: {
 
-    },
-    inputstyle:{
-        padding:10,  
-    },
   });
 export default FireAlarm;

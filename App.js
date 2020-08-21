@@ -3,15 +3,14 @@ import { StyleSheet, Text, View, } from 'react-native';
 import Home from './screens/Home.js';
 import CreateEmployee from './screens/CreateEmployee';
 import Main from './screens/Main';
-import Lights from './screens/Lights';
-import Doors from './screens/Doors';
+import Safety from './screens/Safety.js';
 import Profile from './screens/Profile.js';
 import PassDoor from './screens/passDoor.js'
 import Carage from './screens/carageDoor.js';
 import GaraegDoor from './screens/Garage.js';
 import Pin from './screens/pin.js';
 import FireAlarm from './screens/FireAlarm.js';
-import Irrigation from './screens/Irrigation.js';
+import Devices from './screens/Devices.js';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //import {createStore} from 'redux';
@@ -46,8 +45,8 @@ const baroptions={
           <Stack.Screen name="Lights" component={Pin} 
            options={{...baroptions, title:"Home Lightning"}}
           />
-          <Stack.Screen name="Doors" component={Doors} 
-           options={{...baroptions, title:"Home Doors"}}
+          <Stack.Screen name="Safety" component={Safety} 
+           options={{...baroptions, title:"Home Safety"}}
           />
           <Stack.Screen name="Carage" component={GaraegDoor} 
            options={{...baroptions, title:"Carage Door"}}
@@ -58,8 +57,8 @@ const baroptions={
           <Stack.Screen name="FireAlarm" component={FireAlarm} 
            options={{...baroptions, title:"Fire Detector System"}}
           />
-          <Stack.Screen name="Irrigation" component={Irrigation} 
-           options={{...baroptions, title:"Irrigation System"}}
+          <Stack.Screen name="Devices" component={Devices} 
+           options={{...baroptions, title:"Home Devices "}}
           />
           <Stack.Screen name="Profile" component={Profile} 
            options={{...baroptions, title:"Profile"}}

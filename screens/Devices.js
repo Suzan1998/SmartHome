@@ -4,7 +4,7 @@ import { StyleSheet, Text, View,Image ,FlatList, Alert, KeyboardAvoidingView,
 import { Card, FAB, Button } from 'react-native-paper';
 //import { item } from 'react-native-paper';
 
-const Irrigation = ({navigation}, route)=>{
+const Devices = ({navigation}, route)=>{
     const [data,setData] = useState([])
     const [loading,setLoading] = useState(true)
 
@@ -110,4 +110,4 @@ const styles = StyleSheet.create({
         padding:10,  
     },
   });
-export default Irrigation;
+export default Devices;
