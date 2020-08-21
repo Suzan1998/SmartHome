@@ -1,20 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image ,KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View,Image ,KeyboardAvoidingView,ScrollView } from 'react-native';
 import {Card,} from 'react-native-paper';
 
 
 const Main = ({navigation}) =>{
         return(
-            <KeyboardAvoidingView behavior="position"  style={styles.root} >
+            <ScrollView  style={styles.root} >
             <View>
+            <Card style={styles.titleCard} onPress={()=>navigation.navigate("Lights")}>
+           <Text style={styles.text}>Home Lights</Text>
+           </Card>
             <Card style={styles.mycard}
                 onPress={()=>navigation.navigate("Lights")}
                 >
                     <View style={styles.cardview}>
-                        <View style={styles.textview}>
-                            <Text style={styles.text}>Home Lights</Text>
-                        
-                        </View>
                     <Image 
                      style={styles.cardImage}
                     source={require('./assets/homelights.png')}
@@ -22,14 +21,14 @@ const Main = ({navigation}) =>{
                     />
                     </View>
                 </Card>
+                <Card style={styles.titleCard} onPress={()=>navigation.navigate("Safety")}>
+           <Text style={styles.text}>Home Safety</Text>
+           </Card>
                 <Card style={styles.mycard}
                 onPress={()=>navigation.navigate("Safety")}
                 >
                     <View style={styles.cardview}>
-                        <View style={styles.textview}>
-                            <Text style={styles.text}>Home Safety</Text>
-                        
-                        </View>
+                      
                     <Image 
                      style={styles.cardImage}
                     source={require('./assets/safehome.png')}
@@ -38,15 +37,13 @@ const Main = ({navigation}) =>{
                     </View>
                 </Card>
 
-                   
+                <Card style={styles.titleCard} onPress={()=>navigation.navigate("Devices")}>
+           <Text style={styles.text}>Home Devices</Text>
+           </Card>
                 <Card style={styles.mycard}
                 onPress={()=>navigation.navigate("Devices")}
                 >
                     <View style={styles.cardview}>
-                        <View style={styles.textview}>
-                            <Text style={styles.text}>Home Devices</Text>
-                        
-                        </View>
                     <Image 
                     style={styles.cardImage}
                     source={require('./assets/devices.png')}
@@ -55,7 +52,7 @@ const Main = ({navigation}) =>{
                     </View>
                 </Card>
             </View>
-            </KeyboardAvoidingView>
+            </ScrollView>
             )
 }
 const theme ={
@@ -72,20 +69,25 @@ const styles = StyleSheet.create({
 
     mycard:{
         margin:5,
-
-       backgroundColor:"white",
-       justifyContent:'flex-end',
-       alignItems:'flex-end',
+       borderColor:"#197fff",
+       justifyContent:'center',
+       alignItems:'center',
        borderBottomWidth:1,
-        borderBottomColor: '#197fff'
+       backgroundColor: 'white',
+       width:360,
+        height:170,
+        alignSelf:'center',
+        borderWidth:2,
+    
         
       },
       cardImage: {
-        width:100,
-        height:100,
-        borderRadius:50,
-        borderWidth:1,
-         borderColor:"#ff3c00"
+        width:200,
+        height:160,
+        alignSelf:'center',
+        borderWidth:2,
+        borderColor:'white'
+     
       },
       cardview:{
         flexDirection:"row",
@@ -102,7 +104,27 @@ const styles = StyleSheet.create({
         margin:30,
        
     },
-
+    
+    titleCard:{
+        margin:5,
+        width:360,
+       height:30,
+       borderWidth:2,
+       borderColor:'#ffffff',
+       flexDirection:"row",
+       backgroundColor:'#197fff',
+       justifyContent:'center',
+       alignItems:'center',
+       alignSelf:'center'
+       
+        
+      },
+      text:{
+        fontSize:15,
+        alignSelf:'center',
+        color:'#ffffff'
+       },
+    
 
 
     
