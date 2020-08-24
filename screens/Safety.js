@@ -9,16 +9,15 @@ const Safety = ({navigation}, route)=>{
 
 
     return(
-        <KeyboardAvoidingView behavior="position"  style={styles.root}>
+        <ScrollView  style={styles.root} >
         <View>
+        <Card style={styles.titleCard} onPress={()=>navigation.navigate("Lights")}>
+           <Text style={styles.text}>Main Door control</Text>
+           </Card>
         <Card style={styles.mycard}
             onPress={()=>navigation.navigate("PassDoor")}
             >
                 <View style={styles.cardview}>
-                    <View style={styles.textview}>
-                        <Text style={styles.text}>Main Door control</Text>
-                    
-                    </View>
                 <Image 
                  style={styles.cardImage}
                 source={require('./assets/door.png')}
@@ -26,14 +25,14 @@ const Safety = ({navigation}, route)=>{
                 />
                 </View>
             </Card>
+
+            <Card style={styles.titleCard} onPress={()=>navigation.navigate("Lights")}>
+           <Text style={styles.text}>Carage Door control</Text>
+           </Card>
             <Card style={styles.mycard}
             onPress={()=>navigation.navigate("Carage")}
             >
                 <View style={styles.cardview}>
-                    <View style={styles.textview}>
-                        <Text style={styles.text}> Carage Door control</Text>
-                    
-                    </View>
                 <Image 
                  style={styles.cardImage}
                 source={require('./assets/carage.png')}
@@ -41,15 +40,14 @@ const Safety = ({navigation}, route)=>{
                 />
                 </View>
             </Card>
-                               
+
+            <Card style={styles.titleCard} onPress={()=>navigation.navigate("Lights")}>
+           <Text style={styles.text}>Fire Detector</Text>
+           </Card>                   
             <Card style={styles.mycard}
                 onPress={()=>navigation.navigate("FireAlarm")}
                 >
                     <View style={styles.cardview}>
-                        <View style={styles.textview}>
-                            <Text style={styles.text}>Fire Detector</Text>
-                        
-                        </View>
                     <Image 
                      style={styles.cardImage}
                     source={require('./assets/fire.png')}
@@ -58,7 +56,7 @@ const Safety = ({navigation}, route)=>{
                     </View>
                 </Card>
             </View>
-            </KeyboardAvoidingView>
+           </ScrollView>
             )
     
 }
@@ -69,75 +67,52 @@ const theme ={
 
 }
 const styles = StyleSheet.create({
-
-    cardview:{
-        flexDirection:"row",
-        
-    },
     textview:{
         flexDirection:'column',
         
     },
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center', 
-        justifyContent: 'center',
-        margin: 1
-        ,
-      },
-    text:{
-       fontSize:18,
-    },
-    fab:{
-        position: 'absolute',
-        margin: 16,
-        right: 265,
-        bottom: 20,
-
-    },
-    mycard:{
+    titleCard:{
         margin:5,
-       // padding:5,
-       backgroundColor:"white",
-       justifyContent:'flex-end',
-       alignItems:'flex-end',
-       borderBottomWidth:1,
-        borderBottomColor: '#197fff'
+        width:360,
+       height:30,
+       borderWidth:2,
+       borderColor:'#ffffff',
+       flexDirection:"row",
+       backgroundColor:'#197fff',
+       justifyContent:'center',
+       alignItems:'center',
+       alignSelf:'center'
+      },
+    mycard:{
+        width:360,
+       height:180,
+        margin:5,
+       backgroundColor:'#197fff',
+       justifyContent:'center',
+       alignItems:'center',
+       borderWidth:10,
+       alignSelf:'center',
+       borderColor:'white',
+       borderRadius:10,
         
       },
       text:{
-          margin:30,
-        fontSize:20,
-        color: '#ff3c00'
-
-     },
-      cardImage: {
-        width:100,
-        height:100,
-        borderRadius:50,
-        borderWidth:1,
-         borderColor:"#ff3c00"
-      },
+        fontSize:15,
+        alignSelf:'center',
+        color:'#ffffff'
+       },
+    cardImage: {
+    width:200,
+    height:150,
+    borderRadius:10,
+    //borderWidth:1,
+    //borderColor:"#ff3c00"
+    },
       cardview:{
         flexDirection:"row",
         padding:6,
         
     },
-    logo: {
-        
-        height: 180,
-        width: 180,
-      },
-      name: {
-        height: 150,
-        width: 330,
-      },
-    inputfont: {
 
-    },
-    inputstyle:{
-        padding:10,  
-    },
   });
 export default Safety;

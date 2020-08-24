@@ -10,6 +10,7 @@ import Carage from './screens/carageDoor.js';
 import GaraegDoor from './screens/Garage.js';
 import Pin from './screens/pin.js';
 import FireAlarm from './screens/FireAlarm.js';
+import ChangePass from './screens/ChangePass.js';
 import Devices from './screens/Devices.js';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -44,6 +45,9 @@ const baroptions={
           />
           <Stack.Screen name="Lights" component={Pin} 
            options={{...baroptions, title:"Home Lightning"}}
+          />
+          <Stack.Screen name="ChangePass" component={ChangePass} 
+           options={{...baroptions, title:"Edit Password"}}
           />
           <Stack.Screen name="Safety" component={Safety} 
            options={{...baroptions, title:"Home Safety"}}

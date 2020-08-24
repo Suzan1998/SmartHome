@@ -6,54 +6,74 @@ import PinView from 'styled-react-native-pin-view';
 import * as firebase from 'firebase';
 
 const PassDoor = ({navigation}, route)=>{
- // var firebase = require("firebase");
-
-   const firebaseConfig = {
-        apiKey: "AIzaSyDrxKgonBdLFWIeNSXDvFfPPynQXP6AiJo",
-        authDomain: "ardu-a361a.firebaseapp.com",
-        databaseURL: "https://ardu-a361a.firebaseio.com",
-        projectId: "ardu-a361a",
-        storageBucket: "ardu-a361a.appspot.com",
-        messagingSenderId: "1096024222021",
-        appId: "1:1096024222021:web:ad47c9d5e28eee46bc762c",
-        measurementId: "G-B4C2GHM5BC"
-      };
-
+        try
+        {
+        const firebaseConfig = {
+          apiKey: "AIzaSyDrxKgonBdLFWIeNSXDvFfPPynQXP6AiJo",
+          authDomain: "ardu-a361a.firebaseapp.com",
+          databaseURL: "https://ardu-a361a.firebaseio.com",
+          projectId: "ardu-a361a",
+          storageBucket: "ardu-a361a.appspot.com",
+          messagingSenderId: "1096024222021",
+          appId: "1:1096024222021:web:ad47c9d5e28eee46bc762c",
+          measurementId: "G-B4C2GHM5BC"
+        };
+          //if (!firebase.app.length) {
+          firebase.initializeApp(firebaseConfig);
+          //console.log(firebaseConfig)
+          //}
+        }
+        catch(error){
+          console.log(error)
+        } 
+   
+      
    let state ={
       pass: 1,
+      pinPass:1,
     };
-    const  readPassword=()=> {
+    const  readPassword=(pinval)=> {
+     
         firebase.database().ref().child('password').on('value', function (snapshot) {
          let password=snapshot.val();
             console.log(password);           
-           
               state.pass=password;
+              state.pinPass=pinval;
              
         });
     }
 
-    let comparePass=(val)=>
+    let comparePass=()=>
     {
       
-      if (val==state.pass){
+      if (state.pinPass==state.pass){
+        console.log(state.pass);
+        console.log(state.pinPass);
         console.log("Yesssss");
+        alert("Correct Password Your Door Will Be Open")
       }
       else
       {
-        
-        console.log(val);
+        console.log(state.pass);
+        console.log(state.pinPass);
         console.log("NOOOOOO");
+        alert("Wrong Password Try Again")
+        
       }
 
     }
      
     return(
-       
         <View>
-           <Button style={styles.inputstyle}  onPress={()=>readPassword()} >
+          <View style={styles.buttonsStyle}>    
+          <Button style={styles.inputstyle} theme={theme} onPress={()=>navigation.navigate("ChangePass")} >
+         Edit Pass
+         </Button>
+         <Button style={styles.inputstyle}  theme={theme} onPress={()=>comparePass()} >
+        Open Door
+        </Button>
+          </View>
          
-          MY PASS
-          </Button>
         <Card style={styles.mycard} >
                 
                 <Image 
@@ -64,7 +84,7 @@ const PassDoor = ({navigation}, route)=>{
             </Card>
             <View style={styles.pinStyle}>
             <PinView  
-            onComplete={(val)=>comparePass(val)}
+            onComplete={(val)=>readPassword(val)}
             pinLength={5}
             buttonBgColor={'#aeb0b5'}
             buttonTextColor={'white'}
@@ -80,7 +100,7 @@ const PassDoor = ({navigation}, route)=>{
 }
 const theme ={
     colors:{
-        primary:"#197fff",   
+        primary:"white",   
     }
 
 }
@@ -94,17 +114,11 @@ const styles = StyleSheet.create({
         borderBottomColor: '#197fff'
         
       },
-      text:{
-        alignSelf:'center',
-        marginRight:10,
-        fontSize:20,
-        color: '#ff3c00'
 
-     },
       cardImage: {
        
         width:400,
-        height:100,
+        height:80,
        
        
       },
@@ -113,9 +127,16 @@ const styles = StyleSheet.create({
         
     },
     inputstyle:{
+      backgroundColor:'#197fff',
       padding:10, 
       alignSelf:'center', 
       width:180,
+      margin:5
   },
+  buttonsStyle:{
+    flexDirection:'row',
+    alignContent:'center',
+    justifyContent:'center'
+  }
   });
 export default PassDoor;
