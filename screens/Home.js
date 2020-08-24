@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react';
 import { StyleSheet, Text, View,Image ,FlatList, Alert, KeyboardAvoidingView,
     ScrollView , } from 'react-native';
 import { Card, FAB, Button } from 'react-native-paper';
+import {LinearGradient} from 'expo-linear-gradient';
 //import { item } from 'react-native-paper';
 
 const Home = ({navigation})=>{
@@ -10,15 +11,16 @@ const Home = ({navigation})=>{
 
     return(
         <View style={{flex:1}}>
-          <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-     <View style={styles.container}>
+           <LinearGradient
+            colors={["#ff3f00","#db4c1d","#ff7d52","#ff774a"]}
+            style={{height:"25%"}}
+            />
+             <View style={styles.container}>
         <Image style={styles.logo} source={require('./assets/logo.png')}/>
         <Image style={styles.name} source={require('./assets/name.png')}/>
-        </View>
-    <View style={styles.inputContainer}>
-     <Text>{'\n'}</Text>
+        
+        
+     
      <Button style={styles.inputstyle} 
            
               theme={theme}
@@ -26,16 +28,12 @@ const Home = ({navigation})=>{
               onPress={()=>navigation.navigate("MainScreen")}>
                 Lets Start
             </Button>
-
-
+            </View>
   
-    </View>
     
-    
-    </KeyboardAvoidingView>
-    </ScrollView>
+   
   </View>
-        </View>
+      
     )
 }
 const theme ={
@@ -45,35 +43,19 @@ const theme ={
 
 }
 const styles = StyleSheet.create({
-    mycard:{
-      margin:5,
-     // padding:5,
-     backgroundColor:'#c1cccc',
-     justifyContent:'flex-end',
-     alignItems:'flex-end',
-      
-    },
-    cardview:{
-        flexDirection:"row",
-        padding:6,
-    },
-    textview:{
-        flexDirection:'column',
-        margin:10,
-    },
     container: {
         flex: 1,
         backgroundColor: 'white',
         alignItems: 'center', 
         justifyContent: 'center',
-        margin: 10
-        ,
+ 
+        
       },
     text:{
        fontSize:18,
     },
     logo: {
-        
+        marginTop:-200,
         height: 180,
         width: 180,
       },
@@ -83,7 +65,9 @@ const styles = StyleSheet.create({
       },
 
     inputstyle:{
-        padding:10,  
+        padding:10, 
+        alignSelf:'center', 
+        width:180,
     },
   });
 export default Home;

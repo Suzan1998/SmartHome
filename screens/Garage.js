@@ -52,8 +52,8 @@ export default class GaraegDoor extends React.Component {
 
 
 readvalueofdoor() {
-  let id="0"
-  let id2="1"
+  let id="close"
+  let id2="open"
  let status
  let status2
  try
@@ -64,13 +64,13 @@ readvalueofdoor() {
             // console.log("status") 
              //console.log(status)  
           //  console.log("sdlfjsdhfh",status)
-          if(status == 1)
+          if(status == "open")
           {
        this.setState({
         doorstatus: "Open"
        })
      }
-     else {
+      if(status == "close") {
        this.setState({
          doorstatus: "Closed"
         })
@@ -87,7 +87,7 @@ readvalueofdoor() {
 
 
 changevaluetoOFFdoor() {
-  let id="0";
+  let id="close";
   //let id2="1";
   let status
   try
@@ -102,7 +102,7 @@ changevaluetoOFFdoor() {
 };
 
 changevaluetoONdoor() {
-  let id="1";
+  let id="open";
   //let id2="1";
   let status
   try

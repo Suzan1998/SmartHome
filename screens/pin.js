@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import {
   StyleSheet, Platform, Image, Text, View, TouchableOpacity, TabView,
   TextInput,
@@ -10,7 +10,9 @@ import {
   Switch, KeyboardAvoidingView,
 } from 'react-native'
 import { Card, FAB, Button } from 'react-native-paper';
+import {LinearGradient} from 'expo-linear-gradient';
 import * as firebase from 'firebase';
+import Carage from './carageDoor';
 
 export default class Pin extends React.Component {
   
@@ -83,25 +85,31 @@ readvalue2() {
 };
 
 readvalueofdoor() {
-  let id="0"
-  let id2="1"
+  let id="off"
+  let id2="on"
  let status
  let status2
  try
   {
-     firebase.database().ref().child('door').on("value", function (snapshot) {
+     firebase.database().ref().child('outLight').on("value", function (snapshot) {
          snapshot.forEach(function (item) {
              status=item.val()
             // console.log("status") 
              //console.log(status)  
           //  console.log("sdlfjsdhfh",status)
-          if(status == 1)
+          if(status == "on")
           {
        this.setState({
         doorstatus: "ON"
        })
      }
-     else {
+     if(status == "auto")
+          {
+       this.setState({
+        doorstatus: "AUTO"
+       })
+     }
+     if(status == "off") {
        this.setState({
          doorstatus: "OFF"
         })
@@ -146,12 +154,26 @@ changevaluetoON() {
 };
 
 changevaluetoOFFdoor() {
-  let id="0";
+  let id="off";
   //let id2="1";
   let status
   try
      {
-     firebase.database().ref('door/').set(
+     firebase.database().ref('outLight/').set(
+      {status:id})
+      this.setState({status: id})
+    }
+  catch(error){
+    console.log(error)
+  }
+};
+changevaluetoAuto() {
+  let id="auto";
+  //let id2="1";
+  let status
+  try
+     {
+     firebase.database().ref('outLight/').set(
       {status:id})
       this.setState({status: id})
     }
@@ -161,12 +183,12 @@ changevaluetoOFFdoor() {
 };
 
 changevaluetoONdoor() {
-  let id="1";
+  let id="on";
   //let id2="1";
   let status
   try
      {
-     firebase.database().ref('door/').set(
+     firebase.database().ref('outLight/').set(
       {status:id})
       this.setState({status: id})
     }
@@ -240,62 +262,20 @@ changevaluetoONled2() {
      console.log("DGDFG",this.state.status)
         return (
          <View style={{flex:1}}>
-         <ScrollView style={styles.scrollView}>
-           <Card style={styles.roomcard}>
-           <Text style={styles.text}>Living Room Light is {this.state.status}</Text>
-           </Card>
-           <Card style={styles.mycard}>
-           <View style={styles.cardview}>
-           <View style={styles.textview}>
-        
-           <Image style={styles.imageStyle}
-                        source={require('./assets/living.png')}/>
-           </View>
-             <TouchableHighlight onPress={this.changevaluetoON} >
-                <Image style={styles.image1Style}
-                        source={require('./assets/on2.png')}/>
           
-      </TouchableHighlight>
-  
-          <TouchableHighlight onPress={this.changevaluetoOFF} >
-          <Image style={styles.image2Style}
-                    source={require('./assets/off2.png')}/>  
-         </TouchableHighlight>
-         
-         </View>
-           </Card>
-           <Card style={styles.roomcard}>
-           <Text style={styles.text}>Kitchen Light is {this.state.status2}</Text>
-           </Card>
-           <Card style={styles.mycard}>
-           <View style={styles.cardview}>
-           <View style={styles.textview}>
-             
-             <Image style={styles.imageStyle}
-                        source={require('./assets/kitchen.png')}/>
-             </View>
-             <TouchableHighlight onPress={this.changevaluetoONled2} >
-             <Image style={styles.image1Style}
-                        source={require('./assets/on2.png')}/>
-      </TouchableHighlight>
-         
-        
-          <TouchableHighlight onPress={this.changevaluetoOFFled2} >
-          <Image style={styles.image2Style}
-                    source={require('./assets/off2.png')}/>  
-         </TouchableHighlight>
-         </View>
-          </Card>
-          <Card style={styles.roomcard}>
+         <ScrollView style={styles.scrollView}>
+         <Card style={styles.roomcard}>
            <Text style={styles.text}>OutDoor Light is {this.state.doorstatus}</Text>
            </Card>
           <Card style={styles.mycard}>
           <View style={styles.cardview}>
           <View style={styles.textview}>
           <Image style={styles.imageStyle}
-                        source={require('./assets/outdoor.png')}/>
+            source={require('./assets/outdoor.png')}/>
              
              </View>
+             <Card style={styles.buttonsCard}>
+             <View style={styles.buttonsCardView}>
              <TouchableHighlight onPress={this.changevaluetoONdoor} >
              <Image style={styles.image1Style}
                         source={require('./assets/on2.png')}/>
@@ -307,12 +287,74 @@ changevaluetoONled2() {
           <Image style={styles.image2Style}
                     source={require('./assets/off2.png')}/>  
          </TouchableHighlight>
+         
+         <TouchableHighlight onPress={this.changevaluetoAuto} >
+          <Image style={styles.image2Style}
+                    source={require('./assets/auto.png')}/>  
+         </TouchableHighlight>
          </View>
          </Card>
+         </View>
+         </Card>
+           <Card style={styles.roomcard}>
+           <Text style={styles.text}>Living Room Light is {this.state.status}</Text>
+           </Card>
+           <Card style={styles.mycard}>
+           <View style={styles.cardview}>
+           <View style={styles.textview}>
+        
+           <Image style={styles.imageStyle}
+                        source={require('./assets/living.png')}/>
+           </View>
+           <Card style={styles.buttonsCard}>
+             <View style={styles.buttonsCardView}>
+             <TouchableHighlight onPress={this.changevaluetoON} >
+                <Image style={styles.image1Style}
+                        source={require('./assets/on2.png')}/>
+          
+      </TouchableHighlight>
+  
+          <TouchableHighlight onPress={this.changevaluetoOFF} >
+          <Image style={styles.image2Style}
+                    source={require('./assets/off2.png')}/>  
+         </TouchableHighlight>
+             </View>
+             
+         </Card>
+         </View>
+           </Card>
+           <Card style={styles.roomcard}>
+           <Text style={styles.text}>Kitchen Light is {this.state.status2}</Text>
+           </Card>
+           <Card style={styles.mycard}>
+           <View style={styles.cardview}>
+           <View style={styles.textview}>
+             
+             <Image style={styles.imageStyle}
+              source={require('./assets/kitchen.png')}/>
+             </View>
+             <Card style={styles.buttonsCard}>
+             <View style={styles.buttonsCardView}>
+             <TouchableHighlight onPress={this.changevaluetoONled2} >
+             <Image style={styles.image1Style}
+            source={require('./assets/on2.png')}/>
+      </TouchableHighlight>
+         
+        
+          <TouchableHighlight onPress={this.changevaluetoOFFled2} >
+          <Image style={styles.image2Style}
+           source={require('./assets/off2.png')}/>  
+         </TouchableHighlight>
+         </View>
+         </Card>
+
+         </View>
+          </Card>
+          
          
           </ScrollView>
           <View>
-          <FAB onPress={()=>navigation.navigate("CreateEmp")}
+          <FAB 
         style={styles.fab}
         large
         icon="plus"
@@ -336,8 +378,8 @@ const styles = StyleSheet.create({
 textview:{
   flexDirection:'column',
   marginTop:2,
-  marginRight:15
-  ,
+  
+  
 },
 text:{
  fontSize:15,
@@ -347,34 +389,36 @@ text:{
 
   image1Style:{
     alignSelf:'flex-end',
-    height:80,
+    height:70,
     width: 80,
-    marginTop:30,
+ 
     
   },
   image2Style:{
     alignSelf:'flex-end',
-    height:80,
+    height:70,
     width: 80,
-    marginTop:30,
+
     
   },
   imageStyle:{
-    alignSelf:'flex-end',
-    height:130,
-    width: 170,
+    alignSelf:'center',
+    height:150,
+    width: 340,
     
   },
   mycard:{
+    height:200,
     margin:5,
-   // padding:5,
+    marginBottom:30,
    backgroundColor:'#ffffff',
-   justifyContent:'flex-end',
-   alignItems:'flex-end',
+   justifyContent:'center',
+   alignItems:'center',
+   width:350,
     
   },
   roomcard:{
-    margin:5,
+    margin:10,
    height:50,
    borderWidth:2,
    borderColor:'#ffffff',
@@ -382,15 +426,31 @@ text:{
    backgroundColor:'#197fff',
    justifyContent:'center',
    alignItems:'center',
-   
-    
   },
   cardview:{
-    flexDirection:"row",
+    flexDirection:'column',
     padding:6,
 },
+buttonsCard:{
+ //borderWidth:2,
+ marginBottom:20,
+ marginTop:5,
+// borderColor:'#197fff',
+  height:75,
+  width:350,
+  flexDirection:'row',
+  alignItems:'center',
+  justifyContent:'center',
 
+},
 
+buttonsCardView:{
+
+  flexDirection:'row',
+  alignItems:'center',
+  justifyContent:'center',
+  padding:0
+},
 
   
 })
