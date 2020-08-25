@@ -18,25 +18,25 @@ const PassDoor = ({navigation}, route)=>{
           appId: "1:1096024222021:web:ad47c9d5e28eee46bc762c",
           measurementId: "G-B4C2GHM5BC"
         };
-          //if (!firebase.app.length) {
+          
           firebase.initializeApp(firebaseConfig);
-          //console.log(firebaseConfig)
-          //}
+          
         }
+        
         catch(error){
           console.log(error)
-        } 
+        } console.disableYellowBox=true
    
       
    let state ={
       pass: 1,
-      pinPass:1,
+      pinPas:2,
     };
     const  readPassword=(pinval)=> {
      
         firebase.database().ref().child('password').on('value', function (snapshot) {
          let password=snapshot.val();
-            console.log(password);           
+            //console.log(password);           
               state.pass=password;
               state.pinPass=pinval;
              
@@ -47,16 +47,16 @@ const PassDoor = ({navigation}, route)=>{
     {
       
       if (state.pinPass==state.pass){
-        console.log(state.pass);
-        console.log(state.pinPass);
-        console.log("Yesssss");
+        //console.log(state.pass);
+        //console.log(state.pinPass);
+        //console.log("Yesssss");
         alert("Correct Password Your Door Will Be Open")
       }
       else
       {
-        console.log(state.pass);
-        console.log(state.pinPass);
-        console.log("NOOOOOO");
+        //console.log(state.pass);
+        //console.log(state.pinPass);
+        //console.log("NOOOOOO");
         alert("Wrong Password Try Again")
         
       }

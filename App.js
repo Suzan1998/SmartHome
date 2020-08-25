@@ -6,7 +6,6 @@ import Main from './screens/Main';
 import Safety from './screens/Safety.js';
 import Profile from './screens/Profile.js';
 import PassDoor from './screens/passDoor.js'
-import Carage from './screens/carageDoor.js';
 import GaraegDoor from './screens/Garage.js';
 import Pin from './screens/pin.js';
 import FireAlarm from './screens/FireAlarm.js';
@@ -14,11 +13,8 @@ import ChangePass from './screens/ChangePass.js';
 import Devices from './screens/Devices.js';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-//import {createStore} from 'redux';
-//import {Provider} from 'react-redux';
 
 
-//const store = creatStore();
 const Stack = createStackNavigator();
 
 

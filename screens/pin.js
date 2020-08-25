@@ -12,7 +12,7 @@ import {
 import { Card, FAB, Button } from 'react-native-paper';
 import {LinearGradient} from 'expo-linear-gradient';
 import * as firebase from 'firebase';
-import Carage from './carageDoor';
+
 
 export default class Pin extends React.Component {
   
@@ -94,9 +94,6 @@ readvalueofdoor() {
      firebase.database().ref().child('outLight').on("value", function (snapshot) {
          snapshot.forEach(function (item) {
              status=item.val()
-            // console.log("status") 
-             //console.log(status)  
-          //  console.log("sdlfjsdhfh",status)
           if(status == "on")
           {
        this.setState({

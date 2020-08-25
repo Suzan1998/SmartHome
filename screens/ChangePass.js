@@ -7,8 +7,16 @@ import * as firebase from 'firebase';
 
 
 const CreateEmployee = ({navigation, route}) =>{
+       
+    let state ={
+        pass: '',
+        oldPassSame:false,
+        textOldPass:'',
+        textNewPass1:'',
+        textNewPass2:'',
+      };
 
-        
+        const [oldPassword, setOldPassword] = useState(state.pass)
         const [shift, setShift] = useState(false)
         try
         {
@@ -30,8 +38,88 @@ const CreateEmployee = ({navigation, route}) =>{
         catch(error){
           console.log(error)
         } 
-    
         
+         
+      const  readOldPassword=()=> {
+        firebase.database().ref().child('password').on('value', function (snapshot) {
+         let password=snapshot.val();
+            //console.log(password);    
+            //console.log("Read Old");
+            state.pass=password;       
+
+        });
+    }
+    const  readOldPasswordText=(pass)=> {
+            //console.log("Read Old Pass Field")
+            state.textOldPass=pass;
+        }
+
+    const setNewPass1Text=(pass1)=>
+    {
+        
+            state.textNewPass1=pass1;
+        
+    }
+
+    const setNewPass2Text=(pass2)=>
+    {
+        
+            state.textNewPass2=pass2;
+        
+
+    }
+
+
+     const compareOldPass=()=>
+     {
+       
+        readOldPassword();
+        if(state.textOldPass!='')
+        {
+            if(state.pass==state.textOldPass)
+        {
+            state.oldPassSame=true;
+            //console.log("Matched yeeees")
+            changePassword();
+
+        }
+ 
+        else
+        {
+         state.oldPassSame=false;
+         //console.log("NOOOOO");
+         alert("Old Password Field Dosen't Match Your Old Pass! Try Again")
+         
+        }
+        }
+        else
+        {
+            alert("Fill Old Pass Empty Field ");
+        }
+      
+     }
+     const changePassword=()=>
+     {
+            if((state.textNewPass1==state.textNewPass2)&&(state.textNewPass1!="")&&(state.textNewPass2!=""))
+            {
+            alert("Your Password Has Been Changed")
+             firebase.database().ref('password/').set(
+             state.textNewPass2)
+             
+            }
+            if((state.textNewPass1!=state.textNewPass2))
+            {
+                alert("The New Passwords Fields Dosen't Match Try Again")
+            }
+            
+            if((state.textNewPass1=="")||(state.textNewPass2==""))
+            {
+                alert("Fill New Password Empty Fields")
+            }
+            
+            
+        }
+         
         return(
             <KeyboardAvoidingView behavior="position"  style={styles.root} enabled={shift}>
             <View>
@@ -43,6 +131,8 @@ const CreateEmployee = ({navigation, route}) =>{
                     onFocus={()=>setShift(false)}
                     mode='outlined'
                     
+                    onChangeText={(value)=>readOldPasswordText(value)}
+                    
                  />
                  <TextInput
                     secureTextEntry={true}
@@ -50,6 +140,7 @@ const CreateEmployee = ({navigation, route}) =>{
                     label='New Password'
                     theme={theme}
                     onFocus={()=>setShift(false)}
+                    onChangeText={(value)=>setNewPass1Text(value)}
                     mode='outlined'
                     
                  />
@@ -60,6 +151,7 @@ const CreateEmployee = ({navigation, route}) =>{
                     label='Repeate Password'
                     theme={theme}
                     onFocus={()=>setShift(false)}
+                    onChangeText={(value)=>setNewPass2Text(value)}
                     mode='outlined'
                     
                  />
@@ -69,6 +161,7 @@ const CreateEmployee = ({navigation, route}) =>{
               icon="check" 
               theme={theme}
               mode="contained"
+              onPress={()=>compareOldPass()}
               >
                Edit Password
             </Button>
