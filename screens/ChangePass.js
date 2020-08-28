@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Modal, ImagePickerIOS, Alert,KeyboardAvoidingView } from 'react-native';
 import { TextInput,Button } from 'react-native-paper';
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
 import * as firebase from 'firebase';
 
 

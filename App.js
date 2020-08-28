@@ -5,6 +5,7 @@ import CreateEmployee from './screens/CreateEmployee';
 import Main from './screens/Main';
 import Safety from './screens/Safety.js';
 import Profile from './screens/Profile.js';
+import Emergency from './screens/Emergency.js';
 import PassDoor from './screens/passDoor.js'
 import GaraegDoor from './screens/Garage.js';
 import Pin from './screens/pin.js';
@@ -60,8 +61,8 @@ const baroptions={
           <Stack.Screen name="Devices" component={Devices} 
            options={{...baroptions, title:"Home Devices "}}
           />
-          <Stack.Screen name="Profile" component={Profile} 
-           options={{...baroptions, title:"Profile"}}
+          <Stack.Screen name="Emergency" component={Emergency} 
+           options={{...baroptions, title:"Call Emergency"}}
           />
       </Stack.Navigator>
     </View>

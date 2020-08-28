@@ -1,12 +1,21 @@
 {
   "expo": {
+    "platforms": [
+      "ios",
+      "android",
+      "web"],
+    "android": {
+      "useNextNotificationsApi": true
+    },
+    
+    
     "name": "home",
     "slug": "home",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./screens/assets/bird.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
